@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\GAME">
+      <UniqueIdentifier>{2ebdbd3b-7516-48bc-9678-7031fb850800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GAME\GAME_OBJECT">
+      <UniqueIdentifier>{8c718aae-9474-43e2-8a79-2a3949e773ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GAME\GAME_OBJECT\SCENE">
+      <UniqueIdentifier>{1944a8df-a69a-417c-8c35-2308509e6d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES">
+      <UniqueIdentifier>{51ac0912-1a91-47fe-bc96-b34c191cb50d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\konntena">
+      <UniqueIdentifier>{9e1afd86-9891-4391-88d2-f5988e152f5f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gmain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SCENE.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_OBJECT.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_CLEAR.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_OVER.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="STAGE.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="TITLE.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME.cpp">
+      <Filter>ソース ファイル\GAME</Filter>
+    </ClCompile>
+    <ClCompile Include="CONTAINER.cpp">
+      <Filter>ソース ファイル\konntena</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint">
+      <Filter>リソース ファイル</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GAME_CLEAR.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="SCENE.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGE.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="TITLE.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME_OBJECT.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME_OVER.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="GAME.h">
+      <Filter>ソース ファイル\GAME</Filter>
+    </ClInclude>
+    <ClInclude Include="CONTAINER.h">
+      <Filter>ソース ファイル\konntena</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
