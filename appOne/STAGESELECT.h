@@ -1,7 +1,7 @@
 #pragma once
 #include "SCENE.h"
 #include "libOne.h"
-class STAGE :
+class STAGESELECT :
     public SCENE
 {
 public:
@@ -15,10 +15,10 @@ public:
         char str[memorySize]{};
     };
 private:
-    DATA Stage;
+    DATA StageSelect;
 public:
-    STAGE(class GAME* game);
-    ~STAGE();
+    STAGESELECT(class GAME* game);
+    ~STAGESELECT();
     void draw();
     void create();
     void nextScene();

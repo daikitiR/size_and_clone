@@ -160,6 +160,7 @@
     <ClCompile Include="gmain.cpp" />
     <ClCompile Include="SCENE.cpp" />
     <ClCompile Include="STAGE.cpp" />
+    <ClCompile Include="STAGESELECT.cpp" />
     <ClCompile Include="TITLE.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="GAME_OVER.h" />
     <ClInclude Include="SCENE.h" />
     <ClInclude Include="STAGE.h" />
+    <ClInclude Include="STAGESELECT.h" />
     <ClInclude Include="TITLE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

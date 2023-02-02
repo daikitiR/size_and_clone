@@ -53,6 +53,9 @@
     <ClCompile Include="CONTAINER.cpp">
       <Filter>ソース ファイル\konntena</Filter>
     </ClCompile>
+    <ClCompile Include="STAGESELECT.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="CONTAINER.h">
       <Filter>ソース ファイル\konntena</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGESELECT.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

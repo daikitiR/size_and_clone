@@ -15,23 +15,18 @@ void SCENE::create()
 void SCENE::init()
 {
 }
-
+void SCENE::update()
+{
+}
 void SCENE::proc()
 {
 	update();
 	draw();
 	nextScene();
 }
-
-void SCENE::update()
-{
-}
-
-
 void SCENE::draw()
 {
 }
-
 void SCENE::nextScene()
 {
 }

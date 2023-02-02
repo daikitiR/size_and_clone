@@ -9,6 +9,7 @@ GAME::GAME() {
 	Container = new CONTAINER;
 	Scenes[TITLE_ID] = new TITLE(this);
 	Scenes[STAGE_ID] = new STAGE(this);
+	Scenes[STAGE_SELECT_ID] = new STAGESELECT(this);
 	Scenes[GAME_CLEAR_ID] = new GAME_CLEAR(this);
 	Scenes[GAME_OVER_ID] = new GAME_OVER(this);
 	CurSceneId = TITLE_ID;
@@ -24,15 +25,15 @@ GAME::~GAME()
 void GAME::run()
 {
 	window(1920, 1080,full);
-
 	Container->load();
 	Scenes[TITLE_ID]->create();
 	Scenes[STAGE_ID]->create();
+	Scenes[STAGE_SELECT_ID]->create();
 	Scenes[GAME_OVER_ID]->create();
 	Scenes[GAME_CLEAR_ID]->create();
-
 	while (notQuit) {
 		Scenes[CurSceneId]->proc();
+
 	}
 }
 
