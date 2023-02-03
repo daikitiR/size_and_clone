@@ -6,14 +6,19 @@ void CONTAINER::load() {
 }
 void CONTAINER::ImageSetData() {
 	//タイトル
-	Images.title.title_image = loadImage("assets\\kariTitle.png");
+	Images.title.image = loadImage("assets\\kariTitle.png");
 	Images.title.pos.x = 0;
 	Images.title.pos.y = 0;
 	Images.title.angle = 0;
 	Images.title.size = 2;
 	Images.title.transmission = 0;
 	//ステージ選択
-	
+	Images.stage_select.image = loadImage("assets\\stageselect.png");	
+	Images.stage_select.pos.x = width / 10;
+	Images.stage_select.pos.y = Data.stage_select.textSize * 2;
+	Images.stage_select.angle = 0;
+	Images.stage_select.size = 0.5;
+	Images.stage_select.transmission = 0;
 }
 
 void CONTAINER::SceneSetData() {
@@ -34,6 +39,7 @@ void CONTAINER::SceneSetData() {
 	strcpy_s(Data.title.menuname[1].str, Data.title.memorySize, "はじめから");
 	strcpy_s(Data.title.menuname[2].str, Data.title.memorySize, "続きから");
 	strcpy_s(Data.title.menuname[3].str, Data.title.memorySize, "おわる");
+	//メニューの位置決め
 	for (int i = 1; i < Data.title.menunum; i++) {
 		Data.title.menuname[i].pos.x = width / 2 - 250 + 25 * (i-1);
 		Data.title.menuname[i].pos.y = Data.title.menuname[0].pos.y + 400 + (i-1) * 100;
@@ -43,16 +49,23 @@ void CONTAINER::SceneSetData() {
 	Data.stage.backColor = COLOR(0, 0, 0);
 	Data.stage.textColor = COLOR(255, 255, 255);
 	Data.stage.textSize = 300;
+	strcpy_s(Data.stage.str, Data.stage.memorySize, "STAGE");
 	Data.stage.pos.x = 0;
 	Data.stage.pos.y = height / 2;
-	strcpy_s(Data.stage.str, Data.stage.memorySize, "STAGE");
 	//ステージ選択
 	Data.stage_select.backColor = COLOR(205, 205, 205);
 	Data.stage_select.textColor = COLOR(0, 11, 0);
-	Data.stage_select.textSize = 300;
-	Data.stage_select.pos.x = 0;
-	Data.stage_select.pos.y = height / 2;
-	strcpy_s(Data.stage_select.str, Data.stage_select.memorySize, "STAGE_SELECT");
+	Data.stage_select.textSize = 100;
+	strcpy_s(Data.stage_select.string[0].str, Data.stage_select.memorySize, "STAGE_SELECT");
+	Data.stage_select.string[0].pos.x = width - strlen(Data.stage_select.string[0].str) * Data.stage_select.textSize / 2 - 100;
+	Data.stage_select.string[0].pos.y = Data.stage_select.textSize * 2;
+		//説明欄
+	Data.stage_select.expTextSize = 50;
+	/////////改行する関数を作る
+	strcpy_s(Data.stage_select.string[0].explain, Data.stage_select.chars,
+		"ここに説明を入れる\nここに説明を入れる\bここに説明を入れる\0");
+	Data.stage_select.string[0].exppos.x = Data.stage_select.string[0].pos.x;
+	Data.stage_select.string[0].exppos.y = Data.stage_select.string[0].pos.y + Data.stage_select.expTextSize;
 	//ゲームオーバー
 	Data.game_over.backColor = COLOR(0, 0, 0);
 	Data.game_over.textColor = COLOR(255, 255, 255);

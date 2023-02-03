@@ -1,5 +1,4 @@
 #include "TITLE.h"
-#include "libOne.h"
 #include "CONTAINER.h"
 TITLE::TITLE(class GAME* game) :
 	SCENE(game) {
@@ -35,11 +34,11 @@ void TITLE::MenuBarDraw() {
 	//表示
 	rect(Title.menuname[Title.selection].pos.x, Title.menuname[Title.selection].pos.y, 50 * strlen(Title.menuname[Title.selection].str), 5);
 }
-
+//パブリック関数
 void TITLE::draw() {
 	clear(Title.backColor);
 	fill(Title.textColor);
-	image(T_Images.title_image, T_Images.pos.x,T_Images.pos.y,T_Images.angle,T_Images.size);
+	image(T_Images.image, T_Images.pos.x,T_Images.pos.y,T_Images.angle,T_Images.size);
 	textSize(Title.textSize);
 	text(Title.menuname->str, Title.menuname->pos.x, Title.menuname->pos.y);
 
@@ -53,14 +52,13 @@ void TITLE::draw() {
 	MenuBarDraw();
 
 }
-
-void TITLE::update() {
-
-}
-//初期化
+	//初期化
 void TITLE::create() {
 	Title = game()->container()->title();
 	T_Images = game()->container()->title_image();
+}
+void TITLE::update() {
+
 }
 void TITLE::nextScene() {
 

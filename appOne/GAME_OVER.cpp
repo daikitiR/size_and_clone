@@ -1,6 +1,5 @@
 #include "GAME_OVER.h"
 #include "CONTAINER.h"
-#include "libOne.h"
 GAME_OVER::GAME_OVER(class GAME* game) :
 	SCENE(game) {
 

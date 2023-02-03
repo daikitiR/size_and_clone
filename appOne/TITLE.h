@@ -27,7 +27,7 @@ public:
     };
     struct IMAGES
     {
-        int title_image = 0;
+        int image = 0;
         VECTOR2 pos;
         float angle = 0;
         float size = 0;

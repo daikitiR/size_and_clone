@@ -19,6 +19,7 @@ class CONTAINER
 	struct IMAGES
 	{
 		TITLE::IMAGES title;
+		STAGESELECT::IMAGES stage_select;
 	};
 	DATA Data;
 	IMAGES Images;
@@ -34,5 +35,6 @@ public:
 	const GAME_CLEAR::DATA& game_clear() { return Data.game_clear; }
 	//image
 	const TITLE::IMAGES& title_image() { return Images.title; }
+	const STAGESELECT::IMAGES& stage_select_image() { return Images.stage_select; }
 
 };

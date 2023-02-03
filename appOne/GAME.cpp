@@ -17,6 +17,7 @@ GAME::GAME() {
 
 GAME::~GAME()
 {
+	delete Container;
 	for (int i = 0; i < NUM_SCENES; i++) {
 		delete Scenes[i];
 	}
@@ -26,11 +27,10 @@ void GAME::run()
 {
 	window(1920, 1080,full);
 	Container->load();
-	Scenes[TITLE_ID]->create();
-	Scenes[STAGE_ID]->create();
-	Scenes[STAGE_SELECT_ID]->create();
-	Scenes[GAME_OVER_ID]->create();
-	Scenes[GAME_CLEAR_ID]->create();
+	for (int i = 0; i < NUM_SCENES; i++) {
+		Scenes[i]->create();
+	}
+
 	while (notQuit) {
 		Scenes[CurSceneId]->proc();
 

@@ -1,5 +1,4 @@
 #include "GAME_CLEAR.h"
-#include "libOne.h"
 #include "CONTAINER.h"
 GAME_CLEAR::GAME_CLEAR(class GAME* game) :
 	SCENE(game) {

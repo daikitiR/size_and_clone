@@ -1,6 +1,5 @@
 #include "STAGE.h"
 #include "CONTAINER.h"
-#include "libOne.h"
 STAGE::STAGE(class GAME* game) :
 	SCENE(game) {
 
