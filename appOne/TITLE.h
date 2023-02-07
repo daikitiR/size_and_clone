@@ -25,13 +25,18 @@ public:
         };
         MenuName menuname[menunum]{};
     };
+
     struct IMAGES
     {
-        int image = 0;
-        VECTOR2 pos;
-        float angle = 0;
-        float size = 0;
-        float transmission = 0;        
+        static const int T_image_num = 6;
+        struct Titleimages {
+            float image{};
+            VECTOR2 pos;
+            float angle = 0;
+            float size = 1;
+            float transmission = 0;
+        };
+        Titleimages images[T_image_num]{};
     };
 private:
     DATA Title;

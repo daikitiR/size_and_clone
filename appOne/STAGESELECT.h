@@ -41,4 +41,6 @@ public:
     void draw();
     void create();
     void nextScene();
+private:
+    void newLineText();
 };

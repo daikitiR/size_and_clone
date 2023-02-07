@@ -6,16 +6,35 @@ void CONTAINER::load() {
 }
 void CONTAINER::ImageSetData() {
 	//タイトル
-	Images.title.image = loadImage("assets\\kariTitle.png");
-	Images.title.pos.x = 0;
-	Images.title.pos.y = 0;
-	Images.title.angle = 0;
-	Images.title.size = 2;
-	Images.title.transmission = 0;
+		//背景
+	Images.title.images[0].image = loadImage("assets\\title\\back.png");
+	Images.title.images[0].pos.x = 0;
+	Images.title.images[0].pos.y = 0;
+	Images.title.images[0].angle = 0;
+	//タイトル
+	Images.title.images[4].image = loadImage("assets\\title\\size_and_clone.png");
+	Images.title.images[4].pos.x = width / 2;
+	Images.title.images[4].pos.y = height / 4;
+	/*--------------forloopのため４を先に宣言してる------------------*/
+		//play
+	Images.title.images[1].image = loadImage("assets\\title\\play.png");
+	Images.title.images[1].pos.x = width / 2;
+	Images.title.images[1].pos.y = Images.title.images[4].pos.y / 2 +400;
+		//newplay
+	Images.title.images[2].image = loadImage("assets\\title\\new_play.png");
+	Images.title.images[2].pos.x = width / 2;
+	Images.title.images[2].pos.y = Images.title.images[1].pos.y + 150;
+		//option
+	Images.title.images[3].image = loadImage("assets\\title\\option.png");
+	Images.title.images[3].pos.x = width / 2;
+	Images.title.images[3].pos.y = Images.title.images[2].pos.y + 150;
+		//Cursor
+	Images.title.images[5].image = loadImage("assets\\title\\Cursor.png");
+	
 	//ステージ選択
 	Images.stage_select.image = loadImage("assets\\stageselect.png");	
 	Images.stage_select.pos.x = width / 10;
-	Images.stage_select.pos.y = Data.stage_select.textSize * 2;
+	Images.stage_select.pos.y = Data.stage_select.string[0].pos.y - Data.stage_select.expTextSize*2;
 	Images.stage_select.angle = 0;
 	Images.stage_select.size = 0.5;
 	Images.stage_select.transmission = 0;
@@ -26,8 +45,6 @@ void CONTAINER::SceneSetData() {
 	Data.title.backColor = COLOR(0, 0, 0);
 	Data.title.textColor = COLOR(255, 255, 255);
 	Data.title.textSize = 300;
-	Data.title.menuname[0].pos.x = 70;
-	Data.title.menuname[0].pos.y = height / 2 + -200;
 	strcpy_s(Data.title.menuname[0].str, Data.title.memorySize, "Size & Clone");
 		//メニュー関連
 	Data.title.MenuBarColor = COLOR(102, 221, 255,Data.title.alpha);
@@ -36,14 +53,7 @@ void CONTAINER::SceneSetData() {
 	Data.title.added = 4;
 	Data.title.alpha = 255;
 	Data.title.selection = 1;
-	strcpy_s(Data.title.menuname[1].str, Data.title.memorySize, "はじめから");
-	strcpy_s(Data.title.menuname[2].str, Data.title.memorySize, "続きから");
-	strcpy_s(Data.title.menuname[3].str, Data.title.memorySize, "おわる");
-	//メニューの位置決め
-	for (int i = 1; i < Data.title.menunum; i++) {
-		Data.title.menuname[i].pos.x = width / 2 - 250 + 25 * (i-1);
-		Data.title.menuname[i].pos.y = Data.title.menuname[0].pos.y + 400 + (i-1) * 100;
-	}
+	
 
 	//ステージ
 	Data.stage.backColor = COLOR(0, 0, 0);
@@ -61,9 +71,8 @@ void CONTAINER::SceneSetData() {
 	Data.stage_select.string[0].pos.y = Data.stage_select.textSize * 2;
 		//説明欄
 	Data.stage_select.expTextSize = 50;
-	/////////改行する関数を作る
 	strcpy_s(Data.stage_select.string[0].explain, Data.stage_select.chars,
-		"ここに説明を入れる\nここに説明を入れる\bここに説明を入れる\0");
+		"ここに説明を入れる\nここに説明を入れる\nここに説明を入れる\n");
 	Data.stage_select.string[0].exppos.x = Data.stage_select.string[0].pos.x;
 	Data.stage_select.string[0].exppos.y = Data.stage_select.string[0].pos.y + Data.stage_select.expTextSize;
 	//ゲームオーバー

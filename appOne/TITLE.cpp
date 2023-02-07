@@ -22,6 +22,8 @@ void TITLE::select(int *selection) {
 	}
 }
 void TITLE::MenuBarDraw() {
+	int curimageX = 125/2;
+	int imageX[3] = { 244/2 +curimageX ,491/2+curimageX,366/2 +curimageX };
 	noStroke();
 	if (Title.alpha > 255 || Title.alpha < 50) {
 		Title.added *= -1;
@@ -32,25 +34,19 @@ void TITLE::MenuBarDraw() {
 	//選択
 	select(&Title.selection);
 	//表示
-	rect(Title.menuname[Title.selection].pos.x, Title.menuname[Title.selection].pos.y, 50 * strlen(Title.menuname[Title.selection].str), 5);
+	image(T_Images.images[5].image, T_Images.images[Title.selection].pos.x-imageX[Title.selection-1], T_Images.images[Title.selection].pos.y, T_Images.images[5].angle, T_Images.images[5].size);
 }
 //パブリック関数
 void TITLE::draw() {
 	clear(Title.backColor);
-	fill(Title.textColor);
-	image(T_Images.image, T_Images.pos.x,T_Images.pos.y,T_Images.angle,T_Images.size);
-	textSize(Title.textSize);
-	text(Title.menuname->str, Title.menuname->pos.x, Title.menuname->pos.y);
-
-	//メニュー
-	textSize(Title.menuSize);
-	fill(Title.MenuTextColor);
-	for (int i = 1; i < Title.menunum; i++) {
-		text(Title.menuname[i].str, Title.menuname[i].pos.x,Title.menuname[i].pos.y);
+	image(T_Images.images[0].image, T_Images.images[0].pos.x, T_Images.images[0].pos.y, T_Images.images[0].angle, T_Images.images[0].size);
+	for (int i = 1; i < T_Images.T_image_num-1; i++) {
+	rectMode(CENTER);
+		image(T_Images.images[i].image, T_Images.images[i].pos.x, T_Images.images[i].pos.y, T_Images.images[i].angle, T_Images.images[i].size);
 	}
 	//メニューバー
 	MenuBarDraw();
-
+	rectMode(CORNER);
 }
 	//初期化
 void TITLE::create() {
