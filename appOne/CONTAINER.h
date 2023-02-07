@@ -20,9 +20,16 @@ class CONTAINER
 	{
 		TITLE::IMAGES title;
 		STAGESELECT::IMAGES stage_select;
+		STAGE::IMAGES stage;
+	};
+	//マップデータ
+	struct MAPS
+	{
+		STAGE::MAPS stage;
 	};
 	DATA Data;
 	IMAGES Images;
+	MAPS Maps;
 public:
 	void load();
 	void ImageSetData();
@@ -36,5 +43,7 @@ public:
 	//image
 	const TITLE::IMAGES& title_image() { return Images.title; }
 	const STAGESELECT::IMAGES& stage_select_image() { return Images.stage_select; }
-
+	const STAGE::IMAGES& stage_image() { return Images.stage; }
+	//map
+	const STAGE::MAPS& stage_map() { return Maps.stage; }
 };

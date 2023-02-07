@@ -34,7 +34,7 @@ public:
     };
 private:
     DATA StageSelect;
-    IMAGES S_Images;
+    IMAGES SS_Images;
 public:
     STAGESELECT(class GAME* game);
     ~STAGESELECT();

@@ -29,19 +29,24 @@ void TITLE::MenuBarDraw() {
 		Title.added *= -1;
 	}
 	Title.alpha += Title.added;
-	Title.MenuBarColor = COLOR(102, 221, 255, Title.alpha);
+	
 	fill(Title.MenuBarColor);
 	//選択
 	select(&Title.selection);
 	//表示
+	imageColor(255,255,255,Title.alpha);
 	image(T_Images.images[5].image, T_Images.images[Title.selection].pos.x-imageX[Title.selection-1], T_Images.images[Title.selection].pos.y, T_Images.images[5].angle, T_Images.images[5].size);
+	//ここをいじればタイトルの画面の明るさを調整できる
+	/*何かに利用できるかも*/
+	imageColor(155);
 }
 //パブリック関数
 void TITLE::draw() {
 	clear(Title.backColor);
 	image(T_Images.images[0].image, T_Images.images[0].pos.x, T_Images.images[0].pos.y, T_Images.images[0].angle, T_Images.images[0].size);
-	for (int i = 1; i < T_Images.T_image_num-1; i++) {
-	rectMode(CENTER);
+	for (int i = 1; i < T_Images.T_image_num - 1; i++) {
+		imageColor(200);
+		rectMode(CENTER);
 		image(T_Images.images[i].image, T_Images.images[i].pos.x, T_Images.images[i].pos.y, T_Images.images[i].angle, T_Images.images[i].size);
 	}
 	//メニューバー

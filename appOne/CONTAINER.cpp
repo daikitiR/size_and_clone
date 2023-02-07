@@ -8,10 +8,7 @@ void CONTAINER::ImageSetData() {
 	//タイトル
 		//背景
 	Images.title.images[0].image = loadImage("assets\\title\\back.png");
-	Images.title.images[0].pos.x = 0;
-	Images.title.images[0].pos.y = 0;
-	Images.title.images[0].angle = 0;
-	//タイトル
+		//タイトル
 	Images.title.images[4].image = loadImage("assets\\title\\size_and_clone.png");
 	Images.title.images[4].pos.x = width / 2;
 	Images.title.images[4].pos.y = height / 4;
@@ -30,7 +27,7 @@ void CONTAINER::ImageSetData() {
 	Images.title.images[3].pos.y = Images.title.images[2].pos.y + 150;
 		//Cursor
 	Images.title.images[5].image = loadImage("assets\\title\\Cursor.png");
-	
+	/*---------------------------------------------------------*/
 	//ステージ選択
 	Images.stage_select.image = loadImage("assets\\stageselect.png");	
 	Images.stage_select.pos.x = width / 10;
@@ -38,30 +35,23 @@ void CONTAINER::ImageSetData() {
 	Images.stage_select.angle = 0;
 	Images.stage_select.size = 0.5;
 	Images.stage_select.transmission = 0;
+	/*---------------------------------------------------------*/
+	//ステージ
+	Images.stage.image = loadImage("assets\\character\\player96.png");
+	Images.stage.image2 = loadImage("assets\\stageselect.png");
+
 }
 
 void CONTAINER::SceneSetData() {
 	//タイトル
-	Data.title.backColor = COLOR(0, 0, 0);
-	Data.title.textColor = COLOR(255, 255, 255);
-	Data.title.textSize = 300;
-	strcpy_s(Data.title.menuname[0].str, Data.title.memorySize, "Size & Clone");
 		//メニュー関連
-	Data.title.MenuBarColor = COLOR(102, 221, 255,Data.title.alpha);
-	Data.title.MenuTextColor = COLOR(171, 230, 247);
-	Data.title.menuSize = 100;
 	Data.title.added = 4;
 	Data.title.alpha = 255;
 	Data.title.selection = 1;
-	
 
 	//ステージ
-	Data.stage.backColor = COLOR(0, 0, 0);
-	Data.stage.textColor = COLOR(255, 255, 255);
-	Data.stage.textSize = 300;
-	strcpy_s(Data.stage.str, Data.stage.memorySize, "STAGE");
-	Data.stage.pos.x = 0;
-	Data.stage.pos.y = height / 2;
+
+
 	//ステージ選択
 	Data.stage_select.backColor = COLOR(205, 205, 205);
 	Data.stage_select.textColor = COLOR(0, 11, 0);

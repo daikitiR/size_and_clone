@@ -33,7 +33,7 @@ void STAGESELECT::draw() {
 	clear(StageSelect.backColor);
 	fill(StageSelect.textColor);
 	//左上のステージ画像
-	image(S_Images.image, S_Images.pos.x, S_Images.pos.y, S_Images.angle, S_Images.size);
+	image(SS_Images.image, SS_Images.pos.x, SS_Images.pos.y, SS_Images.angle, SS_Images.size);
 	//右上のステージ名
 	textSize(StageSelect.textSize);
 	text(StageSelect.string[0].str, StageSelect.string[0].pos.x, StageSelect.string[0].pos.y);
@@ -44,11 +44,11 @@ void STAGESELECT::draw() {
 	//下の四角い説明欄
 	fill(255);
 	rectMode(CENTER);
-	rect(width / 2, S_Images.pos.y * 8, width / 1.2, 200);
+	rect(width / 2, SS_Images.pos.y * 8, width / 1.2, 200);
 	//さらにその下のページ数
 	fill(0);
 	for (int i = -1; i < 2; i++) {
-		rect(width / 2+i*100, S_Images.pos.y * 10, 25, 25);
+		rect(width / 2+i*100, SS_Images.pos.y * 10, 25, 25);
 	}
 
 
@@ -56,7 +56,7 @@ void STAGESELECT::draw() {
 }
 void STAGESELECT::create() {
 	StageSelect = game()->container()->stageselect();
-	S_Images = game()->container()->stage_select_image();
+	SS_Images = game()->container()->stage_select_image();
 }
 void STAGESELECT::nextScene() {
 	if (isTrigger(KEY_Z)) {
