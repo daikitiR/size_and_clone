@@ -23,18 +23,14 @@ void STAGE::draw() {
 }
 void STAGE::mapcreate()
 {
-	const char* fileName = "assets\\maps\\map1.txt";
-	FILE* fp;
-	fopen_s(&fp, fileName, "rb");
-	fseek(fp, 0, SEEK_END);
-	int fileSize = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
+	//const char* fileName = "assets\\maps\\map1.txt";
+	//FILE* fp;
+	//fopen_s(&fp, fileName, "rb");
+	//fseek(fp, 0, SEEK_END);
+	//int fileSize = ftell(fp);
+	//fseek(fp, 0, SEEK_SET);
+	//fclose(fp);
 
-	
-
-
-
-	fclose(fp);
 }
 
 void STAGE::create() {

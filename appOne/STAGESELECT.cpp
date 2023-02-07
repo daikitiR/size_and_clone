@@ -50,7 +50,7 @@ void STAGESELECT::draw() {
 	for (int i = -1; i < 2; i++) {
 		rect(width / 2+i*100, SS_Images.pos.y * 10, 25, 25);
 	}
-
+	
 
 	rectMode(CORNER);
 }

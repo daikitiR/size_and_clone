@@ -26,11 +26,13 @@ public:
     };
     struct MAPS 
     {
+        static const int COLS = 18;
+        static const int ROWS = 32;
+        int MAP[ROWS][COLS]{ {} };
         int blocks = 0;
         int player = 0;
         int enemy = 0;
         int trap = 0;
-
     };
 private:
     DATA Stage;
