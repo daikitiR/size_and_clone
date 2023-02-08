@@ -30,7 +30,7 @@ public:
     {
         static const int T_image_num = 6;
         struct Titleimages {
-            float image{};
+            int image{};
             VECTOR2 pos;
             float angle = 0;
             float size = 1;

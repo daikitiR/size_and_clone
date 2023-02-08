@@ -26,6 +26,7 @@ class CONTAINER
 	struct MAPS
 	{
 		STAGE::MAPS stage;
+
 	};
 	DATA Data;
 	IMAGES Images;
@@ -34,6 +35,7 @@ public:
 	void load();
 	void ImageSetData();
 	void SceneSetData();
+	void MapSetData();
 	//data
 	const TITLE::DATA& title() { return Data.title; }
 	const STAGE::DATA& stage() { return Data.stage; }

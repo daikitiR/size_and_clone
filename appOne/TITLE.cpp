@@ -10,13 +10,13 @@ TITLE::~TITLE() {
 void TITLE::select(int *selection) {
 	static int i = 1;
 
-	if (isTrigger(KEY_W)) {
+	if (isTrigger(KEY_W) || isTrigger(KEY_UP)) {
 		i--;
 		if (i == 0)
 			i = 3;
 		*selection = i;
 	}
-	else if (isTrigger(KEY_S)) {
+	else if (isTrigger(KEY_S)|| isTrigger(KEY_DOWN)) {
 		i = i % 3 + 1;
 		*selection = i;
 	}
@@ -38,7 +38,7 @@ void TITLE::MenuBarDraw() {
 	image(T_Images.images[5].image, T_Images.images[Title.selection].pos.x-imageX[Title.selection-1], T_Images.images[Title.selection].pos.y, T_Images.images[5].angle, T_Images.images[5].size);
 	//ここをいじればタイトルの画面の明るさを調整できる
 	/*何かに利用できるかも*/
-	imageColor(155);
+	imageColor(200);
 }
 //パブリック関数
 void TITLE::draw() {

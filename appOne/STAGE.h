@@ -26,9 +26,10 @@ public:
     };
     struct MAPS 
     {
+        static const int MAPNUM = 2;
         static const int COLS = 18;
         static const int ROWS = 32;
-        int MAP[ROWS][COLS]{ {} };
+        int MAP[MAPNUM][COLS][ROWS ]{ {} };
         int blocks = 0;
         int player = 0;
         int enemy = 0;

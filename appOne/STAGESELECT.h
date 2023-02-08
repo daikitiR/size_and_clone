@@ -9,13 +9,19 @@ class STAGESELECT :
 public:
     struct DATA
     {
-        COLOR backColor = 0;
-        COLOR textColor = 0;
-        const static int stageNum = 1;
+        const static int stageNum = 2;
         static const int chars = 128;
         static const int memorySize = 16;
+        COLOR backColor = 0;
+        COLOR textColor = 0;
         float textSize = 0;
         float expTextSize = 0;
+        struct SELECTBLOCK {
+            int Block;
+            float Size;
+            VECTOR2 pos;
+        };
+        SELECTBLOCK selectBlock[stageNum]{};
         struct EXPLAN {
             char str[memorySize]{};
             char explain[chars]{};

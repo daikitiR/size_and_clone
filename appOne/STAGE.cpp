@@ -9,27 +9,25 @@ STAGE::~STAGE() {
 }
 void STAGE::draw() {
 	clear(Stage.backColor);
-	fill(Stage.textColor);
 	image(S_Images.image2, 0,0);
 	image(S_Images.image, 0, height / 2+175, 0, 1);
-	for (int i = 0; i < 32; i++) {
-		//‰¡‚U‚O@c‚U‚O
-		stroke(0);
-		strokeWeight(1);
-		for (int j = 0;j < 18; j++) {
-			rect(60*i, 60 * j, 60, 60);
+	for (int i = 0; i < Map.COLS; i++) {
+		for (int j = 0; j < Map.ROWS; j++) {
+			strokeWeight(1);
+			if (Map.MAP[0][i][j] == 1) {
+				fill(255, 255, 255, 155);
+				rect(60 * j, 60 * i, 60, 60);
+			}
+			else {
+				fill(0,0,0,155);
+				rect(60 * j, 60 * i, 60, 60);
+			}
 		}
 	}
 }
 void STAGE::mapcreate()
 {
-	//const char* fileName = "assets\\maps\\map1.txt";
-	//FILE* fp;
-	//fopen_s(&fp, fileName, "rb");
-	//fseek(fp, 0, SEEK_END);
-	//int fileSize = ftell(fp);
-	//fseek(fp, 0, SEEK_SET);
-	//fclose(fp);
+	
 
 }
 
