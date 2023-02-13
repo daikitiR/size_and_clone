@@ -4,6 +4,7 @@
 #include "GAME_OVER.h"
 #include "libOne.h"
 #include "CONTAINER.h"
+#include "PLAYER.h"
 #include "GAME.h"
 GAME::GAME() {
 	Container = new CONTAINER;
@@ -13,6 +14,7 @@ GAME::GAME() {
 	Scenes[GAME_CLEAR_ID] = new GAME_CLEAR(this);
 	Scenes[GAME_OVER_ID] = new GAME_OVER(this);
 	CurSceneId = TITLE_ID;
+	Player = new PLAYER(this);
 }
 
 GAME::~GAME()
@@ -21,6 +23,7 @@ GAME::~GAME()
 	for (int i = 0; i < NUM_SCENES; i++) {
 		delete Scenes[i];
 	}
+	delete Player;
 }
 
 void GAME::run()
@@ -30,10 +33,9 @@ void GAME::run()
 	for (int i = 0; i < NUM_SCENES; i++) {
 		Scenes[i]->create();
 	}
-
+	Player->create();
 	while (notQuit) {
 		Scenes[CurSceneId]->proc();
-
 	}
 }
 

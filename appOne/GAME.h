@@ -19,8 +19,10 @@ public:
 private:
 	class SCENE* Scenes[NUM_SCENES];
 	SCENE_ID CurSceneId;
+	class CHARACTER* Player;
 	int EndTrigger = 0;
 public:
+	class CHARACTER* player() { return Player; }
 	GAME();
 	virtual ~GAME();
 	void run();

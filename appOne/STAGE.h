@@ -16,9 +16,12 @@ public:
     };
     struct IMAGES
     {
-        //ˆê’U‚Ë
         int image=0;
-        int image2=0;
+        int back=0;
+        int tile = 0;
+        int thorn = 0;
+        int clone_machine = 0;
+        int woodBox = 0;
         VECTOR2 pos;
         float angle = 0;
         float size = 1;
@@ -29,21 +32,18 @@ public:
         static const int MAPNUM = 2;
         static const int COLS = 18;
         static const int ROWS = 32;
-        int MAP[MAPNUM][COLS][ROWS ]{ {} };
-        int blocks = 0;
-        int player = 0;
-        int enemy = 0;
-        int trap = 0;
+        int MAP[MAPNUM][COLS][ROWS]{ {} };
+        VECTOR2 pos[COLS][ROWS];
     };
 private:
     DATA Stage;
-    IMAGES S_Images;
     MAPS Map;
+    IMAGES S_Images;
 public:
     STAGE(class GAME* game);
     ~STAGE();
     void draw();
-    void mapcreate();
     void create();
+    void update();
     void nextScene();
 };

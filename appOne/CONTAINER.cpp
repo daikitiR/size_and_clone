@@ -4,6 +4,7 @@ void CONTAINER::load() {
 	SceneSetData();
 	ImageSetData();
 	MapSetData();
+	CharacterSetData();
 }
 void CONTAINER::ImageSetData() {
 	//タイトル
@@ -39,8 +40,10 @@ void CONTAINER::ImageSetData() {
 	/*---------------------------------------------------------*/
 	//ステージ
 	Images.stage.image = loadImage("assets\\character\\player96.png");
-	Images.stage.image2 = loadImage("assets\\stageselect.png");
-
+	Images.stage.back = loadImage("assets\\stage\\back.png");
+	Images.stage.tile = loadImage("assets\\stage\\tile60.png");
+	Images.stage.thorn = loadImage("assets\\stage\\thorn60.png");
+	Images.stage.clone_machine = loadImage("assets\\stage\\clone_machine128.png");
 }
 
 void CONTAINER::SceneSetData() {
@@ -88,9 +91,9 @@ void CONTAINER::SceneSetData() {
 }
 
 void CONTAINER::MapSetData() {
-	static const int MAPNUM = Maps.stage.MAPNUM;
-	static const int COLS = Maps.stage.COLS;
-	static const int ROWS = Maps.stage.ROWS;
+	const int MAPNUM = Maps.stage.MAPNUM;
+	const int COLS = Maps.stage.COLS;
+	const int ROWS = Maps.stage.ROWS;
 	int MAP[MAPNUM][COLS][ROWS]{
 		{
 			//1ステージ
@@ -106,9 +109,9 @@ void CONTAINER::MapSetData() {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//10
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//11
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//12
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//13
+			{0,4,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//13
 			{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//14
-			{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//15
+			{1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},//15
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//16
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//17
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//18
@@ -138,6 +141,20 @@ void CONTAINER::MapSetData() {
 	for (int i = 0; i < COLS; i++) {
 		for (int j = 0; j < ROWS; j++) {
 			Maps.stage.MAP[0][i][j] = MAP[0][i][j];
+			Maps.stage.pos[i][j].x = 60 * j;
+			Maps.stage.pos[i][j].y = 60 * i;
 		}
 	}
+}
+
+void CONTAINER::CharacterSetData() {
+	//プレイヤー
+	Character.player.image  = loadImage("assets\\character\\player96.png");
+	Character.player.pos.x = 0;
+	Character.player.pos.y = height / 2;
+	Character.player.vec.x = 1;
+	Character.player.vec.y = 1;
+	Character.player.moveSpeed = 7;
+	Character.player.angle = 0;
+	Character.player.size = 1;
 }

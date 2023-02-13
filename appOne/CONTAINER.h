@@ -4,6 +4,8 @@
 #include "GAME_OVER.h"
 #include "GAME_CLEAR.h"
 #include "STAGESELECT.h"
+#include "PLAYER.h"
+#include "BLOCK.h"
 class CONTAINER
 {
 	//数値データ
@@ -26,16 +28,21 @@ class CONTAINER
 	struct MAPS
 	{
 		STAGE::MAPS stage;
-
+	};
+	//キャラクター
+	struct CHARACTER {
+		PLAYER::DATA player;
 	};
 	DATA Data;
 	IMAGES Images;
 	MAPS Maps;
+	CHARACTER Character;
 public:
 	void load();
 	void ImageSetData();
 	void SceneSetData();
 	void MapSetData();
+	void CharacterSetData();
 	//data
 	const TITLE::DATA& title() { return Data.title; }
 	const STAGE::DATA& stage() { return Data.stage; }
@@ -47,5 +54,7 @@ public:
 	const STAGESELECT::IMAGES& stage_select_image() { return Images.stage_select; }
 	const STAGE::IMAGES& stage_image() { return Images.stage; }
 	//map
-	const STAGE::MAPS& stage_map() { return Maps.stage; }
+	STAGE::MAPS& stage_map() { return Maps.stage; }
+	//character
+	const PLAYER::DATA& player() { return Character.player; }
 };

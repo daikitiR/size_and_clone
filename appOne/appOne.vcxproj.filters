@@ -24,6 +24,12 @@
     <Filter Include="ソース ファイル\konntena">
       <UniqueIdentifier>{9e1afd86-9891-4391-88d2-f5988e152f5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GAME\GAME_OBJECT\CHARACTER">
+      <UniqueIdentifier>{0f7289d5-60d4-4a2e-8b6b-e56f3ccb8a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GAME\GAME_OBJECT\CHARACTER\base">
+      <UniqueIdentifier>{5caf5a36-b81b-4eef-babc-cc5b080d73b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gmain.cpp">
@@ -55,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="STAGESELECT.cpp">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAYER.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="CHARACTER.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="STAGESELECT.h">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\SCENE\SCENES</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAYER.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="CHARACTER.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,8 +20,8 @@ void SCENE::update()
 }
 void SCENE::proc()
 {
-	update();
 	draw();
+	update();
 	nextScene();
 }
 void SCENE::draw()
