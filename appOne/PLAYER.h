@@ -14,7 +14,9 @@ public:
         float angle = 0;
         float size = 0;
     };
-
+    float pustPlayerX = 0;
+    float pustPlayerY = 0;
+   
 private:
     DATA Player;
 public:
@@ -23,8 +25,10 @@ public:
     void create();
     void init();
     void update();
-    void move();
-   void collision();
+    void moveX();
+    void moveY();
+    void collisionX();
+    void collisionY();
     void jump();
     void draw();
 };

@@ -34,7 +34,14 @@ public:
         static const int ROWS = 32;
         int MAP[MAPNUM][COLS][ROWS]{ {} };
         VECTOR2 pos[COLS][ROWS];
+        float w;
+        float h;
+        float right[COLS][ROWS];
+        float left[COLS][ROWS];
+        float top[COLS][ROWS]; 
+        float bottom[COLS][ROWS];
     };
+    
 private:
     DATA Stage;
     MAPS Map;

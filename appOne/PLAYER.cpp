@@ -22,91 +22,127 @@ void PLAYER::init()
 
 void PLAYER::update()
 {
-	collision();
-	move();
+	moveX();
+	collisionX();
+	moveY();
+	collisionY();
 }
 
-void PLAYER::move() {
+
+void PLAYER::moveX()
+{
 	Player.vec = normalize(Player.vec);
+	pustPlayerX = Player.pos.x;
 	if (isPress(KEY_D)) {
 		Player.pos.x += Player.vec.x * Player.moveSpeed;
 	}
 	if (isPress(KEY_A)) {
 		Player.pos.x -= Player.vec.x * Player.moveSpeed;
 	}
+}
+
+void PLAYER::moveY()
+{
+	Player.vec = normalize(Player.vec);
+	pustPlayerY = Player.pos.y;
 	if (isPress(KEY_W)) {
 		Player.pos.y -= Player.vec.y * Player.moveSpeed;
 	}
 	if (isPress(KEY_S)) {
 		Player.pos.y += Player.vec.y * Player.moveSpeed;
 	}
-}
 
-void PLAYER::collision()
+}
+void PLAYER::collisionX()
 {
-	STAGE::MAPS map = game()->container()->stage_map();
+	STAGE::MAPS* map = new STAGE::MAPS;
+	*map = game()->container()->stage_map();
 	struct RECT {
-		float x,y, w, h;
-		float right, left, top,bottom;
+		float x, y, w, h;
+		float right, left, top, bottom;
 	};
-	RECT p{}, b[map.COLS][map.ROWS]{};
+	RECT p{};
+	//動的確保しろ
 	//プレイヤーの当たり判定
 	p.x = Player.pos.x + 18;
 	p.y = Player.pos.y;
-	p.w = 60;	
-	p.h = 96-7;
-	p.right = p.x;
-	p.left = p.x + p.w;
-	p.bottom = p.y;
-	p.top = p.y + p.h;
-	//ブロックの当たり判定
-	for (int i = 0; i < map.COLS; i++) {
-		for (int j = 0; j < map.ROWS; j++) {
-			b[i][j].x = map.pos[i][j].x;
-			b[i][j].y = map.pos[i][j].y;
-			b[i][j].w = 60;
-			b[i][j].h = 60;
-			b[i][j].right = b[i][j].x + b[i][j].w + p.w;
-			b[i][j].left = b[i][j].x - p.w;
-			b[i][j].bottom = b[i][j].y + b[i][j].h + p.h;
-			b[i][j].top = b[i][j].y - p.h;
-		}
-	}
-	//確認用
-	int pxR = p.right;
-	int pyB = p.bottom;
-	textSize(200);
-	fill(200);
-	text(pxR, width / 2, height / 2);
-	text(pyB, width / 2, height / 2+200);
+	p.w = 60;
+	p.h = 96 - 7;
+	p.right = p.x + p.w;
+	p.left = p.x;
+	p.bottom = p.y + p.h;
+	p.top = p.y;
 	//当たったら
-	for (int i = 0; i < map.COLS; i++) {
-		for (int j = 0; j < map.ROWS; j++) {
-			fill(0,0,0,75);
-			textSize(20);
-			text(b[i][j].left , 60 * j, 60 * i + 60);
-			text(b[i][j].top, 60 * j, 60 * i + 40);
-			
-			if (p.right > b[i][j].left &&
-				p.left < b[i][j].right &&
-				p.bottom > b[i][j].top &&
-				p.top < b[i][j].bottom) {
-				if (map.MAP[0][i][j] == 1) {
-					int flag = 0;
-					flag == 1;
-				//確認用
-				fill(255, 0, 0,155);
-				rect(map.pos[i][j].x, map.pos[i][j].y, 60, 60);
-				float Pbacky = p.bottom - b[i][j].top;
-				float Pbackx = p.right - b[i][j].left;
-				Player.pos.y -= Pbacky;
-				//Player.pos.x -= Pbackx;
-					////調整するだけ
+	for (int i = 0; i < map->COLS; i++) {
+		for (int j = 0; j < map->ROWS; j++) {
+			if (p.right > map->left[i][j] &&
+				p.left < map->right[i][j] &&
+				p.bottom > map->top[i][j] &&
+				p.top < map->bottom[i][j]) {
+				if (map->MAP[0][i][j] == 1) {
+					//確認用
+					fill(0, 255, 0, 155);
+					rect(map->pos[i][j].x, map->pos[i][j].y, 60, 60);
+					//migi
+					//右の判定が働いているときに上下の判定を行わない
+					if (p.right > map->left[i][j]) {
+						Player.pos.x = pustPlayerX;
+					}
+					//hidari
+					//左の判定が働いているときに上下の判定を行わない
+					if (p.left < map->right[i][j]) {
+						Player.pos.x = pustPlayerX;
+					}
 
 				}
 			}
 		}
 	}
+	delete map;
+}
+
+void PLAYER::collisionY() {
+	STAGE::MAPS* map = new STAGE::MAPS;
+	*map = game()->container()->stage_map();
+	struct RECT {
+		float x, y, w, h;
+		float right, left, top, bottom;
+	};
+	RECT p{};
+	//動的確保しろ
+	//プレイヤーの当たり判定
+	p.x = Player.pos.x + 18;
+	p.y = Player.pos.y;
+	p.w = 60;
+	p.h = 96 - 7;
+	p.right = p.x + p.w;
+	p.left = p.x;
+	p.bottom = p.y + p.h;
+	p.top = p.y;
+	//当たったら
+	for (int i = 0; i < map->COLS; i++) {
+		for (int j = 0; j < map->ROWS; j++) {
+			if (p.right > map->left[i][j] &&
+				p.left < map->right[i][j] &&
+				p.bottom > map->top[i][j] &&
+				p.top < map->bottom[i][j]) {
+				if (map->MAP[0][i][j] == 1) {
+					//確認用
+					fill(255, 0, 0, 155);
+					rect(map->pos[i][j].x, map->pos[i][j].y, 60, 60);
+					//sita
+					if (p.bottom > map->top[i][j]) {
+						Player.pos.y = pustPlayerY;
+					}
+					//ue
+					if (p.top < map->bottom[i][j]) {
+						Player.pos.y = pustPlayerY;
+					}
+				}
+			}
+		}
+	}
+	delete map;
 }
 
 void PLAYER::draw()

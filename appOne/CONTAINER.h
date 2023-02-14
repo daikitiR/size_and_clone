@@ -33,6 +33,7 @@ class CONTAINER
 	struct CHARACTER {
 		PLAYER::DATA player;
 	};
+	
 	DATA Data;
 	IMAGES Images;
 	MAPS Maps;
