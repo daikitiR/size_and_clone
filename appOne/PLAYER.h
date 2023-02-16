@@ -10,7 +10,6 @@ public:
         VECTOR2 pos{};
         VECTOR2 vec{};
         float moveSpeed = 0;
-        float g = 0;
         float angle = 0;
         float size = 0;
     };
