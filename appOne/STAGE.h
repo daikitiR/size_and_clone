@@ -29,6 +29,7 @@ public:
     };
     struct MAPS 
     {
+        bool col = 0;
         static const int MAPNUM = 2;
         static const int COLS = 18;
         static const int ROWS = 32;

@@ -5,6 +5,7 @@
 #include "libOne.h"
 #include "CONTAINER.h"
 #include "PLAYER.h"
+#include "CLONE.h"
 #include "GAME.h"
 GAME::GAME() {
 	Container = new CONTAINER;
@@ -15,6 +16,8 @@ GAME::GAME() {
 	Scenes[GAME_OVER_ID] = new GAME_OVER(this);
 	CurSceneId = TITLE_ID;
 	Player = new PLAYER(this);
+	Clone = new CLONE(this);
+	
 }
 
 GAME::~GAME()
@@ -24,6 +27,7 @@ GAME::~GAME()
 		delete Scenes[i];
 	}
 	delete Player;
+	delete Clone;
 }
 
 void GAME::run()
@@ -34,6 +38,7 @@ void GAME::run()
 		Scenes[i]->create();
 	}
 	Player->create();
+	Clone->create();
 	while (notQuit) {
 		Scenes[CurSceneId]->proc();
 	}

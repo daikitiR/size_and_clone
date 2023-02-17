@@ -5,6 +5,7 @@
 #include "GAME_CLEAR.h"
 #include "STAGESELECT.h"
 #include "PLAYER.h"
+#include "CLONE.h"
 #include "BLOCK.h"
 class CONTAINER
 {
@@ -23,6 +24,8 @@ class CONTAINER
 		TITLE::IMAGES title;
 		STAGESELECT::IMAGES stage_select;
 		STAGE::IMAGES stage;
+		GAME_CLEAR::IMAGES game_clear;
+		GAME_OVER::IMAGES game_over;
 	};
 	//マップデータ
 	struct MAPS
@@ -32,8 +35,8 @@ class CONTAINER
 	//キャラクター
 	struct CHARACTER {
 		PLAYER::DATA player;
-	};
-	
+		CLONE::DATA clone;
+	};	
 	DATA Data;
 	IMAGES Images;
 	MAPS Maps;
@@ -54,8 +57,11 @@ public:
 	const TITLE::IMAGES& title_image() { return Images.title; }
 	const STAGESELECT::IMAGES& stage_select_image() { return Images.stage_select; }
 	const STAGE::IMAGES& stage_image() { return Images.stage; }
+	const GAME_CLEAR::IMAGES& game_clear_image() { return Images.game_clear; }
+	const GAME_OVER::IMAGES& game_over_image() { return Images.game_over; }
 	//map
-	STAGE::MAPS& stage_map() { return Maps.stage; }
+	const STAGE::MAPS& stage_map() { return Maps.stage; }
 	//character
 	const PLAYER::DATA& player() { return Character.player; }
+	const CLONE::DATA& clone() { return Character.clone; }
 };

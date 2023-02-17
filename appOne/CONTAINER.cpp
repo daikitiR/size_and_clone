@@ -44,6 +44,10 @@ void CONTAINER::ImageSetData() {
 	Images.stage.tile = loadImage("assets\\stage\\tile60.png");
 	Images.stage.thorn = loadImage("assets\\stage\\thorn60.png");
 	Images.stage.clone_machine = loadImage("assets\\stage\\clone_machine128.png");
+	//ゲームクリア
+	Images.game_clear.images[0].image = loadImage("assets\\stage_clear\\model.png");
+	//ゲームクリア
+	Images.game_over.images[0].image = loadImage("assets\\game_over\\model.png");
 }
 
 void CONTAINER::SceneSetData() {
@@ -83,11 +87,8 @@ void CONTAINER::SceneSetData() {
 	strcpy_s(Data.game_over.str, Data.game_over.memorySize, "game_over");
 	//ゲームクリア
 	Data.game_clear.backColor = COLOR(0, 0, 0);
-	Data.game_clear.textColor = COLOR(255, 255, 255);
-	Data.game_clear.textSize = 300;
 	Data.game_clear.pos.x = 0;
 	Data.game_clear.pos.y = height / 2;
-	strcpy_s(Data.game_clear.str, Data.game_clear.memorySize, "game_clear");
 }
 
 void CONTAINER::MapSetData() {
@@ -105,13 +106,13 @@ void CONTAINER::MapSetData() {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//5
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//6
 			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//7
-			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//8
+			{0,0,0,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//8
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//9
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//10
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//11
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//12
-			{0,4,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//13
-			{1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//14
+			{0,4,0,0,0,0,0,3,2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//13
+			{1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//14
 			{1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},//15
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//16
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//17
@@ -142,8 +143,9 @@ void CONTAINER::MapSetData() {
 	for (int i = 0; i < COLS; i++) {
 		for (int j = 0; j < ROWS; j++) {
 			Maps.stage.MAP[0][i][j] = MAP[0][i][j];
-			Maps.stage.pos[i][j].x = 60 * j;
-			Maps.stage.pos[i][j].y = 60 * i;
+			float I = i, J = j;
+			Maps.stage.pos[i][j].x = 60 * J;
+			Maps.stage.pos[i][j].y = 60 * I;
 			Maps.stage.w= 60;
 			Maps.stage.h= 60;
 			Maps.stage.right[i][j] = Maps.stage.pos[i][j].x + Maps.stage.w;
@@ -162,7 +164,17 @@ void CONTAINER::CharacterSetData() {
 	Character.player.vec.x = 1;
 	Character.player.vec.y = 1;
 	Character.player.moveSpeed = 7;
+	Character.player.g = 10;
 	Character.player.angle = 0;
 	Character.player.size = 1;
-	//プレイヤーの当たり判定
+	Character.player.sound = loadSound("assets\\sound\\gutya.wav");
+	//クローン
+	Character.clone.cloneNum = 0;
+	Character.clone.cloneTotalNum = 5;
+	Character.clone.image = loadImage("assets\\character\\clone96.png");
+	Character.clone.moveSpeed = 7;
+	Character.clone.g = 10;
+	Character.clone.angle = 0;
+	//単体のデータ
+	
 }

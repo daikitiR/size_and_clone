@@ -48,7 +48,6 @@ void TITLE::draw() {
 		imageColor(200);
 		rectMode(CENTER);
 		image(T_Images.images[i].image, T_Images.images[i].pos.x, T_Images.images[i].pos.y, T_Images.images[i].angle, T_Images.images[i].size);
-		
 	}
 	//メニューバー
 	MenuBarDraw();

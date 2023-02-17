@@ -9,13 +9,13 @@ GAME_OVER::~GAME_OVER() {
 }
 void GAME_OVER::draw() {
 	clear(Game_over.backColor);
-	fill(Game_over.textColor);
-	textSize(Game_over.textSize);
-	text(Game_over.str, Game_over.pos.x, Game_over.pos.y);
+	image(O_image.images[0].image, 0, 0, 0);
+
 }
 void GAME_OVER::create()
 {
 	Game_over = game()->container()->game_over();
+	O_image = game()->container()->game_over_image();
 }
 void GAME_OVER::nextScene() {
 	if (isTrigger(KEY_Z)) {

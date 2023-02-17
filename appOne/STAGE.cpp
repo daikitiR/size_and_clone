@@ -10,8 +10,7 @@ STAGE::~STAGE() {
 void STAGE::draw() {
 	clear(Stage.backColor);
 	imageColor(255);
-	image(S_Images.back, 0,0);
-	
+	image(S_Images.back, 0,0);	
 	//マップ
 	for (int i = 0; i < Map.COLS; i++) {
 		for (int j = 0; j < Map.ROWS; j++) {
@@ -33,14 +32,16 @@ void STAGE::draw() {
 				rectMode(CORNER);
 				break;
 			default:
+				float J = j, I = i;
 				fill(0,0,0,0);
-				rect(60 * j, 60 * i, 60, 60);
+				rect(60 * J, 60 * I, 60, 60);
 				break;
 			}
 		}
 	}
+	//プレイヤー描画
 	game()->player()->draw();
-	game()->player()->update();
+	game()->clone()->draw();
 	imageColor(255);
 }
 
@@ -48,10 +49,13 @@ void STAGE::create() {
 	Stage = game()->container()->stage();
 	S_Images = game()->container()->stage_image();
 	Map = game()->container()->stage_map();
+
 }
+//アップデート
 void STAGE::update()
 {
 	game()->player()->update();
+	game()->clone()->update();
 }
 void STAGE::nextScene() {
 	if (isTrigger(KEY_Z)) {

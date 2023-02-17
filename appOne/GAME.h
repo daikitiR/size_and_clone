@@ -20,9 +20,11 @@ private:
 	class SCENE* Scenes[NUM_SCENES];
 	SCENE_ID CurSceneId;
 	class CHARACTER* Player;
+	class CLONE* Clone;
 	int EndTrigger = 0;
 public:
 	class CHARACTER* player() { return Player; }
+	class CLONE* clone() { return Clone; }
 	GAME();
 	virtual ~GAME();
 	void run();

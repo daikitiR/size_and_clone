@@ -9,13 +9,12 @@ GAME_CLEAR::~GAME_CLEAR() {
 }
 void GAME_CLEAR::draw() {
 	clear(Game_clear.backColor);
-	fill(Game_clear.textColor);
-	textSize(Game_clear.textSize);
-	text(Game_clear.str, Game_clear.pos.x, Game_clear.pos.y);
+	image(C_image.images[0].image, 0, 0, 0);
 }
 void GAME_CLEAR::create()
 {
 	Game_clear = game()->container()->game_clear();
+	C_image = game()->container()->game_clear_image();
 }
 void GAME_CLEAR::nextScene() {
 	if (isTrigger(KEY_Z)) {

@@ -48,7 +48,6 @@ void STAGESELECT::draw() {
 	//さらにその下のページ数
 	fill(0);
 	for (int i = 0; i < StageSelect.stageNum; i++) {
-		//左右に動かしてステージ選択をしてそれの戻り値をif文に渡して参照するそれをfillで透過に通す
 		rect(StageSelect.selectBlock[i].pos.x, StageSelect.selectBlock[i].pos.y, StageSelect.selectBlock[i].Size, StageSelect.selectBlock[i].Size);
 	}
 	rectMode(CORNER);
@@ -59,6 +58,8 @@ void STAGESELECT::create() {
 }
 void STAGESELECT::nextScene() {
 	if (isTrigger(KEY_Z)) {
+		game()->player()->init();
+		game()->clone()->init();
 		game()->changeScene(GAME::STAGE_ID);
 	}
 }

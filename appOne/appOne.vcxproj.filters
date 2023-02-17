@@ -68,6 +68,9 @@
     <ClCompile Include="CHARACTER.cpp">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER\base</Filter>
     </ClCompile>
+    <ClCompile Include="CLONE.cpp">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="CHARACTER.h">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER\base</Filter>
+    </ClInclude>
+    <ClInclude Include="CLONE.h">
+      <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
