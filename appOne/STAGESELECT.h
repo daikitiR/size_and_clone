@@ -9,26 +9,8 @@ class STAGESELECT :
 public:
     struct DATA
     {
-        const static int stageNum = 2;
-        static const int chars = 128;
-        static const int memorySize = 16;
+
         COLOR backColor = 0;
-        COLOR textColor = 0;
-        float textSize = 0;
-        float expTextSize = 0;
-        struct SELECTBLOCK {
-            int Block;
-            float Size;
-            VECTOR2 pos;
-        };
-        SELECTBLOCK selectBlock[stageNum]{};
-        struct EXPLAN {
-            char str[memorySize]{};
-            char explain[chars]{};
-            VECTOR2 pos;
-            VECTOR2 exppos;
-        };
-        EXPLAN string[stageNum];
     };
     struct IMAGES
     {

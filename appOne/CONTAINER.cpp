@@ -31,11 +31,10 @@ void CONTAINER::ImageSetData() {
 	Images.title.images[5].image = loadImage("assets\\title\\Cursor.png");
 	/*---------------------------------------------------------*/
 	//ステージ選択
-	Images.stage_select.image = loadImage("assets\\stageselect.png");	
-	Images.stage_select.pos.x = width / 10;
-	Images.stage_select.pos.y = Data.stage_select.string[0].pos.y - Data.stage_select.expTextSize*2;
-	Images.stage_select.angle = 0;
-	Images.stage_select.size = 0.5;
+	Images.stage_select.image = loadImage("assets\\stage_select\\Stage_Select.png");	
+	Images.stage_select.pos.x = 0;
+	Images.stage_select.pos.y = 0;
+	Images.stage_select.size = 1;
 	Images.stage_select.transmission = 0;
 	/*---------------------------------------------------------*/
 	//ステージ
@@ -45,6 +44,7 @@ void CONTAINER::ImageSetData() {
 	Images.stage.thorn = loadImage("assets\\stage\\thorn60.png");
 	Images.stage.clone_machine = loadImage("assets\\stage\\clone_machine128.png");
 	Images.stage.woodBox = loadImage("assets\\stage\\woodBox60.png");
+	Images.stage.button = loadImage("assets\\stage\\button.png");
 	//ゲームクリア
 	Images.game_clear.images[0].image = loadImage("assets\\stage_clear\\model.png");
 	//ゲームクリア
@@ -61,24 +61,7 @@ void CONTAINER::SceneSetData() {
 
 	//ステージ選択
 	Data.stage_select.backColor = COLOR(205, 205, 205);
-	Data.stage_select.textColor = COLOR(0, 11, 0);
-	Data.stage_select.textSize = 100;
-	strcpy_s(Data.stage_select.string[0].str, Data.stage_select.memorySize, "STAGE_SELECT");
-	Data.stage_select.string[0].pos.x = width - strlen(Data.stage_select.string[0].str) * Data.stage_select.textSize / 2 - 100;
-	Data.stage_select.string[0].pos.y = Data.stage_select.textSize * 2;
-		//説明欄
-	Data.stage_select.expTextSize = 50;
-	strcpy_s(Data.stage_select.string[0].explain, Data.stage_select.chars,
-		"ここに説明を入れる\nここに説明を入れる\nここに説明を入れる\n");
-	Data.stage_select.string[0].exppos.x = Data.stage_select.string[0].pos.x;
-	Data.stage_select.string[0].exppos.y = Data.stage_select.string[0].pos.y + Data.stage_select.expTextSize;
-		//下のステージの数を表すブロック
-	for (int i = 0; i < Data.stage_select.stageNum; i++) {
-		Data.stage_select.selectBlock[i].Size = 20;
-		Data.stage_select.selectBlock[i].Block = 0;
-		Data.stage_select.selectBlock[i].pos.x = width / 2 + i * 100;
-		Data.stage_select.selectBlock[i].pos.y = height - 100;
-	}
+	
 	//ゲームオーバー
 	Data.game_over.backColor = COLOR(0, 0, 0);
 	Data.game_over.textColor = COLOR(255, 255, 255);
@@ -100,19 +83,19 @@ void CONTAINER::MapSetData() {
 	int MAP[MAPNUM][COLS][ROWS]{
 		{
 			//1ステージ
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//1
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//2
-			{0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//3
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//4
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//5
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//6
-			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//7
-			{0,0,0,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0},//8
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//9
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//10
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//11
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//12
-			{0,0,0,0,0,0,0,3,2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0},//13
+			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//1
+			{1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//2
+			{1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//3
+			{1,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//4
+			{1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//5
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//6
+			{1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},//7
+			{1,0,0,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,5,1},//8
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//9
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//10
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//11
+			{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//12
+			{1,0,0,0,0,0,0,3,2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0},//13
 			{1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//14
 			{1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},//15
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//16
@@ -160,7 +143,7 @@ void CONTAINER::MapSetData() {
 void CONTAINER::CharacterSetData() {
 	//プレイヤー
 	Character.player.image = loadImage("assets\\character\\player96.png");
-	Character.player.pos.x = 0;
+	Character.player.pos.x = 120;
 	Character.player.pos.y = height / 2;
 	Character.player.vec.x = 1;
 	Character.player.vec.y = 1;
@@ -183,7 +166,7 @@ void CONTAINER::CharacterSetData() {
 	//木箱
 	Character.wbox.image = loadImage("assets\\stage\\woodBox60.png");
 	Character.wbox.pos.x = 120;
-	Character.wbox.pos.y = 0;
+	Character.wbox.pos.y = 120;
 	Character.wbox.vec.x = 1;
 	Character.wbox.vec.y = 1;
 	Character.wbox.moveSpeed = 7;

@@ -13,6 +13,7 @@ public:
         VECTOR2 pos;
         static const int memorySize = 16;
         char str[memorySize]{};
+        int Woodnum = 0;
     };
     struct IMAGES
     {
@@ -22,6 +23,7 @@ public:
         int thorn = 0;
         int clone_machine = 0;
         int woodBox = 0;
+        int button = 0;
         VECTOR2 pos;
         float angle = 0;
         float size = 1;

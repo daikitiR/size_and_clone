@@ -14,13 +14,14 @@ public:
         float angle = 0;
         float size = 0;
         bool flag = 0;
+        int sizeMode = 0;
         int sound = 0;
     };
     float pustPlayerX = 0;
     float pustPlayerY = 0;
     //jump 
     bool JumpNow = 0;
-    float  vy = 0, initvy = -20;
+    float  vy = -19, initvy = -20;
     //“–‚½‚è”»’è
     struct RECT {
         float x = 0, y = 0, w = 55, h = 96 - 7;

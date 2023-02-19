@@ -22,7 +22,7 @@ void STAGE::draw() {
 				image(S_Images.tile,Map.pos[i][j].x, Map.pos[i][j].y, 0, 1);
 				break;
 			//Ç∆Ç∞
-			case 2:
+		case 2:
 				image(S_Images.thorn, Map.pos[i][j].x, Map.pos[i][j].y, 0, 1);
 				break;
 			//ÉNÉçÅ[Éìëïíu
@@ -32,7 +32,9 @@ void STAGE::draw() {
 				rectMode(CORNER);
 				break;
 			case 4:
-				image(S_Images.woodBox, Map.pos[i][j].x, Map.pos[i][j].y, 0, 1);
+				break;
+			case 5:
+				image(S_Images.button, Map.pos[i][j].x, Map.pos[i][j].y+26, 0, 1);
 				break;
 			default:
 				float J = j, I = i;

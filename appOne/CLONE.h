@@ -39,7 +39,7 @@ public:
     void create();
     void init();
     void update();
-    void spawn(const VECTOR2& pos);
+    void spawn(float posx,float posy);
     void draw();
     void woodcol(int i,VECTOR2* wpos);
 

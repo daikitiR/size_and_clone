@@ -23,24 +23,26 @@ void CLONE::init()
 void CLONE::update()
 {
 	for (int i = Clone.cloneNum - 1; i >= 0; i--) {
-		game()->woodbox()->ClonecolMove(&TheClone[i].pos,i);
+		game()->woodbox()->ClonecolMove(&TheClone[i].pos,1);
 		moveX(i);
 		collisionX(i);
 		moveY(i);
 		collisionY(i);
 	}
 }
-void CLONE::spawn(const VECTOR2& pos) {
+void CLONE::spawn(float posx,float posy) {
 	if (Clone.cloneNum < Clone.cloneTotalNum) {
 		int i = Clone.cloneNum;
-		TheClone[i].pos.x = pos.x;
-		TheClone[i].pos.y = pos.y;
+		TheClone[i].pos.x = posx;
+		TheClone[i].pos.y = posy;
 		Clone.cloneNum++;
 	}
 }
 //•`‰æ
 void CLONE::draw()
 {
+	fill(255);
+	text(Clone.cloneNum, width / 2, height / 2);
 	for (int i = 0; i<Clone.cloneNum; i++) {
 		image(Clone.image, TheClone[i].pos.x, TheClone[i].pos.y, Clone.angle, TheClone[i].size);
 	}

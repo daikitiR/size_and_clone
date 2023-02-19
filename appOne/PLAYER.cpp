@@ -47,13 +47,13 @@ void PLAYER::moveY()
 {
 	Player.vec = normalize(Player.vec);
 	pustPlayerY = Player.pos.y;
-	if (isPress(KEY_W)) {
+	/*if (isPress(KEY_W)) {
 		Player.pos.y -= Player.vec.y * Player.moveSpeed;
 	}
 	if (isPress(KEY_S)) {
 		Player.pos.y += Player.vec.y * Player.moveSpeed;
-	}
-	//gravity();
+	}*/
+	gravity();
 }
 void PLAYER::collisionX()
 {
@@ -185,11 +185,12 @@ void PLAYER::woodcol(VECTOR2* wpos)
 
 void PLAYER::cloneSpawn() {
 	if (isTrigger(KEY_G)) {
-		game()->clone()->spawn(Player.pos);
+		game()->clone()->spawn(6*60,10*60);
 	}
 }
 
 void PLAYER::sizeChange() {
+	//dekakunaru
 	if (Player.flag == 0) {
 		if (isTrigger(KEY_E)) {
 			Player.size = 2;
@@ -198,16 +199,39 @@ void PLAYER::sizeChange() {
 			p.w *= 2;
 			p.h *= 2;
 			Player.flag = 1;
+			Player.sizeMode = 1;
+		}
+	}
+	//tiisai
+	if (Player.flag == 0) {
+		if (isTrigger(KEY_R)) {
+			Player.size = 0.5;
+			Player.pos.y -= p.h;
+			p.sizecal = 0.5;
+			p.w /= 2;
+			p.h /= 2;
+			Player.flag = 1;
+			Player.sizeMode = 2;
 		}
 	}
 	if (Player.flag == 1) {
 		if (isTrigger(KEY_Q)) {
-			Player.size = 1;
-			p.w /= 2;
-			p.h /= 2;
-			Player.pos.y += p.h;
-			p.sizecal = 1;
-			Player.flag = 0;
+			if (Player.sizeMode == 1) {
+				Player.size = 1;
+				p.w /= 2;
+				p.h /= 2;
+				Player.pos.y += p.h;
+				p.sizecal = 1;
+				Player.flag = 0;
+			}
+			else if (Player.sizeMode == 2) {
+				Player.size = 1;
+				p.w *= 2;
+				p.h *= 2;
+				Player.pos.y -= p.h;
+				p.sizecal = 1;
+				Player.flag = 0;
+			}
 		}
 	}
 }
