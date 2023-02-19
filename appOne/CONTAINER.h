@@ -7,6 +7,7 @@
 #include "PLAYER.h"
 #include "CLONE.h"
 #include "BLOCK.h"
+#include "WOODBOX.h"
 class CONTAINER
 {
 	//数値データ
@@ -36,11 +37,18 @@ class CONTAINER
 	struct CHARACTER {
 		PLAYER::DATA player;
 		CLONE::DATA clone;
+		WOODBOX::DATA wbox;
 	};	
+	struct RECT {
+		PLAYER::RECT Prect;
+		WOODBOX::RECT Wrect;
+		CLONE::RECT Crect;
+	};
 	DATA Data;
 	IMAGES Images;
 	MAPS Maps;
 	CHARACTER Character;
+	RECT Rect;
 public:
 	void load();
 	void ImageSetData();
@@ -63,5 +71,9 @@ public:
 	const STAGE::MAPS& stage_map() { return Maps.stage; }
 	//character
 	const PLAYER::DATA& player() { return Character.player; }
+	const PLAYER::RECT& playerRect() { return Rect.Prect; }
 	const CLONE::DATA& clone() { return Character.clone; }
+	const CLONE::RECT& cloneRect() { return Rect.Crect; }
+	const WOODBOX::DATA& woodbox() { return Character.wbox; }
+	const WOODBOX::RECT& woodboxRect() { return Rect.Wrect; }
 };

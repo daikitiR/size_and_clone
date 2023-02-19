@@ -6,6 +6,7 @@
 #include "CONTAINER.h"
 #include "PLAYER.h"
 #include "CLONE.h"
+#include "WOODBOX.h"
 #include "GAME.h"
 GAME::GAME() {
 	Container = new CONTAINER;
@@ -17,7 +18,7 @@ GAME::GAME() {
 	CurSceneId = TITLE_ID;
 	Player = new PLAYER(this);
 	Clone = new CLONE(this);
-	
+	WoodBox = new WOODBOX(this);
 }
 
 GAME::~GAME()
@@ -28,6 +29,7 @@ GAME::~GAME()
 	}
 	delete Player;
 	delete Clone;
+	delete WoodBox;
 }
 
 void GAME::run()
@@ -39,6 +41,7 @@ void GAME::run()
 	}
 	Player->create();
 	Clone->create();
+	WoodBox->create();
 	while (notQuit) {
 		Scenes[CurSceneId]->proc();
 	}

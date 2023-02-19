@@ -44,6 +44,7 @@ void CONTAINER::ImageSetData() {
 	Images.stage.tile = loadImage("assets\\stage\\tile60.png");
 	Images.stage.thorn = loadImage("assets\\stage\\thorn60.png");
 	Images.stage.clone_machine = loadImage("assets\\stage\\clone_machine128.png");
+	Images.stage.woodBox = loadImage("assets\\stage\\woodBox60.png");
 	//ゲームクリア
 	Images.game_clear.images[0].image = loadImage("assets\\stage_clear\\model.png");
 	//ゲームクリア
@@ -106,12 +107,12 @@ void CONTAINER::MapSetData() {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//5
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//6
 			{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//7
-			{0,0,0,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//8
+			{0,0,0,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0},//8
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//9
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1},//10
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//11
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//12
-			{0,4,0,0,0,0,0,3,2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//13
+			{0,0,0,0,0,0,0,3,2,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0},//13
 			{1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},//14
 			{1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},//15
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},//16
@@ -167,14 +168,24 @@ void CONTAINER::CharacterSetData() {
 	Character.player.g = 10;
 	Character.player.angle = 0;
 	Character.player.size = 1;
+	Rect.Prect.w = 55;
+	Rect.Prect.h = 96-7;
+	//音
 	Character.player.sound = loadSound("assets\\sound\\gutya.wav");
 	//クローン
 	Character.clone.cloneNum = 0;
 	Character.clone.cloneTotalNum = 5;
 	Character.clone.image = loadImage("assets\\character\\clone96.png");
 	Character.clone.moveSpeed = 7;
-	Character.clone.g = 10;
 	Character.clone.angle = 0;
-	//単体のデータ
-	
+	//音
+	Character.clone.sound = loadSound("assets\\sound\\gutya.wav");
+	//木箱
+	Character.wbox.image = loadImage("assets\\stage\\woodBox60.png");
+	Character.wbox.pos.x = 120;
+	Character.wbox.pos.y = 0;
+	Character.wbox.vec.x = 1;
+	Character.wbox.vec.y = 1;
+	Character.wbox.moveSpeed = 7;
+	Character.wbox.g = 10;
 }

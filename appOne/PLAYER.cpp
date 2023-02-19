@@ -2,6 +2,7 @@
 #include"CLONE.h"
 #include "STAGE.h"
 #include "CONTAINER.h"
+#include "WOODBOX.h"
 PLAYER::PLAYER(class GAME* game) :
 	CHARACTER(game) {
 };
@@ -17,29 +18,19 @@ void PLAYER::create()
 void PLAYER::init()
 {
 	Player = game()->container()->player();
+	p = game()->container()->playerRect();
 }
 
 void PLAYER::update()
 {
+	sizeChange();
+	game()->woodbox()->PlayercolMove(&Player.pos,p.sizecal);
+	cloneSpawn();
 	moveX();
 	collisionX();
 	moveY();
 	collisionY();
-	cloneSpawn();
 }
-
-void PLAYER::cloneSpawn() {
-	if (isTrigger(KEY_E)) {
-		game()->clone()->spawn(Player.pos);
-
-	}
-}
-
-void PLAYER::setPlayerCOL()
-{
-
-}
-
 //動き
 void PLAYER::moveX()
 {
@@ -56,7 +47,7 @@ void PLAYER::moveY()
 {
 	Player.vec = normalize(Player.vec);
 	pustPlayerY = Player.pos.y;
-	if (isPress(KEY_W)||isPress(KEY_SPACE)) {
+	if (isPress(KEY_W)) {
 		Player.pos.y -= Player.vec.y * Player.moveSpeed;
 	}
 	if (isPress(KEY_S)) {
@@ -69,20 +60,12 @@ void PLAYER::collisionX()
 
 	STAGE::MAPS* map = new STAGE::MAPS;
 	*map = game()->container()->stage_map();
-	//当たり判定
-	struct RECTP {
-		float x, y, w, h;
-		float right, left, top, bottom;
-	};
-	RECTP p;
 	//プレイヤーの当たり判定
 	p.x = Player.pos.x + 18;
 	p.y = Player.pos.y;
-	p.w = 50;
-	p.h = 96 - 7;
 	p.right = p.x + p.w;
-	p.left = p.x;
-	p.bottom = p.y + p.h;
+	p.left = p.x + 15 * p.sizecal;
+	p.bottom = p.y + p.h ;
 	p.top = p.y;
 	//当たったら
 	for (int i = 0; i < map->COLS; i++) {
@@ -112,19 +95,11 @@ void PLAYER::collisionX()
 void PLAYER::collisionY() {
 	STAGE::MAPS* map = new STAGE::MAPS;
 	*map = game()->container()->stage_map();	
-	//当たり判定
-	struct RECTP {
-		float x, y, w, h;
-		float right, left, top, bottom;
-	};
-	RECTP p;
 	//プレイヤーの当たり判定
 	p.x = Player.pos.x + 18;
 	p.y = Player.pos.y;
-	p.w = 50;
-	p.h = 96 - 7;
 	p.right = p.x + p.w;
-	p.left = p.x;
+	p.left = p.x + 15* p.sizecal;
 	p.bottom = p.y + p.h;
 	p.top = p.y;
 	//当たったら
@@ -143,7 +118,7 @@ void PLAYER::collisionY() {
 					if (p.bottom > map->top[i][j]) {
 						Player.pos.y = pustPlayerY;
 					}
-					//ue6
+					//ue
 					if (p.top < map->bottom[i][j]) {
 						Player.pos.y = pustPlayerY;
 					}
@@ -151,10 +126,8 @@ void PLAYER::collisionY() {
 				//とげに当たったら
 				else if (map->MAP[0][i][j] == 2) {					
 					playSound(Player.sound);
-					game()->changeScene(GAME::GAME_OVER_ID);
-					
+					game()->changeScene(GAME::GAME_OVER_ID);					
 				}
-
 			}
 		}
 	}
@@ -181,4 +154,60 @@ void PLAYER::gravity()
 void PLAYER::draw()
 {
 	image(Player.image, Player.pos.x, Player.pos.y,Player.angle,Player.size);
+}
+
+void PLAYER::woodcol(VECTOR2* wpos)
+{
+	WOODBOX::RECT* rect = new WOODBOX::RECT;
+	*rect = game()->container()->woodboxRect();
+	//木箱の当たり判定
+	rect->x = wpos->x;
+	rect->y = wpos->y;
+	rect->right = rect->x + rect->w;
+	rect->left = rect->x;
+	rect->bottom = rect->y + rect->h;
+	rect->top = rect->y;
+	//プレイヤーの当たり判定
+	p.x = Player.pos.x + 18;
+	p.y = Player.pos.y;
+	p.right = p.x + p.w;
+	p.left = p.x + 15 * p.sizecal;
+	p.bottom = p.y + p.h;
+	p.top = p.y;
+	if (p.right > rect->left &&
+		p.left < rect->right &&
+		p.top < rect->bottom &&
+		p.bottom > rect->top) {
+		Player.pos.y = pustPlayerY;
+	}
+
+}
+
+void PLAYER::cloneSpawn() {
+	if (isTrigger(KEY_G)) {
+		game()->clone()->spawn(Player.pos);
+	}
+}
+
+void PLAYER::sizeChange() {
+	if (Player.flag == 0) {
+		if (isTrigger(KEY_E)) {
+			Player.size = 2;
+			Player.pos.y -= p.h;
+			p.sizecal = 2;
+			p.w *= 2;
+			p.h *= 2;
+			Player.flag = 1;
+		}
+	}
+	if (Player.flag == 1) {
+		if (isTrigger(KEY_Q)) {
+			Player.size = 1;
+			p.w /= 2;
+			p.h /= 2;
+			Player.pos.y += p.h;
+			p.sizecal = 1;
+			Player.flag = 0;
+		}
+	}
 }

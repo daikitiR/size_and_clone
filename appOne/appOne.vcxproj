@@ -165,6 +165,7 @@
     <ClCompile Include="STAGE.cpp" />
     <ClCompile Include="STAGESELECT.cpp" />
     <ClCompile Include="TITLE.cpp" />
+    <ClCompile Include="WOODBOX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -185,6 +186,7 @@
     <ClInclude Include="STAGE.h" />
     <ClInclude Include="STAGESELECT.h" />
     <ClInclude Include="TITLE.h" />
+    <ClInclude Include="WOODBOX.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

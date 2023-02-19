@@ -1,5 +1,7 @@
 #include "CLONE.h"
 #include "STAGE.h"
+#include "PLAYER.h"
+#include "WOODBOX.h"
 #include "CONTAINER.h"
 CLONE::CLONE(class GAME* game) :
 	CHARACTER(game) {
@@ -21,16 +23,14 @@ void CLONE::init()
 void CLONE::update()
 {
 	for (int i = Clone.cloneNum - 1; i >= 0; i--) {
+		game()->woodbox()->ClonecolMove(&TheClone[i].pos,i);
 		moveX(i);
 		collisionX(i);
 		moveY(i);
 		collisionY(i);
-
 	}
 }
-void CLONE::spawn(const VECTOR2& pos)
-{
-	
+void CLONE::spawn(const VECTOR2& pos) {
 	if (Clone.cloneNum < Clone.cloneTotalNum) {
 		int i = Clone.cloneNum;
 		TheClone[i].pos.x = pos.x;
@@ -41,8 +41,6 @@ void CLONE::spawn(const VECTOR2& pos)
 //描画
 void CLONE::draw()
 {
-	fill(255);
-	text(Clone.cloneNum, width / 2, height / 2);
 	for (int i = 0; i<Clone.cloneNum; i++) {
 		image(Clone.image, TheClone[i].pos.x, TheClone[i].pos.y, Clone.angle, TheClone[i].size);
 	}
@@ -70,21 +68,15 @@ void CLONE::collisionX(int NUM)
 {
 	STAGE::MAPS* map = new STAGE::MAPS;
 	*map = game()->container()->stage_map();
-	struct RECT {
-		float x, y, w, h;
-		float right, left, top, bottom;
-	};
-	RECT p{};
-	//プレイヤーの当たり判定
+		//クローンの当たり判定
 	p.x = TheClone[NUM].pos.x + 18;
 	p.y = TheClone[NUM].pos.y;
-	p.w = 60;
-	p.h = 96 - 7;
 	p.right = p.x + p.w;
 	p.left = p.x;
 	p.bottom = p.y + p.h;
 	p.top = p.y;
 	//当たったら
+	int flag = 0;
 	for (int i = 0; i < map->COLS; i++) {
 		for (int j = 0; j < map->ROWS; j++) {
 			if (p.right > map->left[i][j] &&
@@ -103,36 +95,32 @@ void CLONE::collisionX(int NUM)
 					if (p.left < map->right[i][j]) {
 						TheClone[NUM].pos.x = TheClone[NUM].pustCloneX;
 					}
-
 				}
 				else if (map->MAP[0][i][j] == 2) {
-					int sound = loadSound("assets\\sound\\gutya.wav");
-					playSound(sound);
-					kill(NUM);
+					playSound(Clone.sound);
+					if (flag == 0) {
+						kill(NUM);
+						flag = 1;
+					}
 				}
 			}
 		}
 	}
+	flag = 0;
 	delete map;
 }
 void CLONE::collisionY(int NUM) {
 	STAGE::MAPS* map = new STAGE::MAPS;
 	*map = game()->container()->stage_map();
-	struct RECT {
-		float x, y, w, h;
-		float right, left, top, bottom;
-	};
-	RECT p{};
+
 	//プレイヤーの当たり判定
 	p.x = TheClone[NUM].pos.x + 18;
 	p.y = TheClone[NUM].pos.y;
-	p.w = 60;
-	p.h = 96 - 7;
 	p.right = p.x + p.w;
 	p.left = p.x;
 	p.bottom = p.y + p.h;
 	p.top = p.y;
-	//当たったら
+	//ブロックに当たったら
 	for (int i = 0; i < map->COLS; i++) {
 		for (int j = 0; j < map->ROWS; j++) {
 			if (p.right > map->left[i][j] &&
@@ -153,9 +141,6 @@ void CLONE::collisionY(int NUM) {
 						TheClone[NUM].pos.y = TheClone[NUM].pustCloneY;
 					}
 				}
-				//とげに当たったら
-				else if (map->MAP[0][i][j] == 2) {
-				}
 			}
 		}
 	}
@@ -163,22 +148,47 @@ void CLONE::collisionY(int NUM) {
 }
 void CLONE::gravity(int i)
 {
-	TheClone[i].pos.y += TheClone[i].vec.y * Clone.g;
-	if (JumpNow == 0) {
+	TheClone[i].pos.y += TheClone[i].vec.y * TheClone[i].g;
+	if (TheClone[i].JumpNow == 0) {
 		if (isTrigger(KEY_SPACE)) {
-			JumpNow = 1;
-			vy = -19;
+			TheClone[i].JumpNow = 1;
+			TheClone[i].vy = -19;
 		}
 	}
-	if (JumpNow) {
-		vy += 0.5f;
-		TheClone[i].pos.y += vy;
-		if (vy == Clone.g) {
-			JumpNow = 0;
+	if (TheClone[i].JumpNow) {
+		TheClone[i].vy += 0.5f;
+		TheClone[i].pos.y += TheClone[i].vy;
+		if (TheClone[i].vy == TheClone[i].g) {
+			TheClone[i].JumpNow = 0;
 		}
 	}
 }
 
+void CLONE::woodcol(int i,VECTOR2* wpos)
+{
+	WOODBOX::RECT* rect = new WOODBOX::RECT;
+	*rect = game()->container()->woodboxRect();
+	//木箱の当たり判定
+	rect->x = wpos->x;
+	rect->y = wpos->y;
+	rect->right = rect->x + rect->w;
+	rect->left = rect->x;
+	rect->bottom = rect->y + rect->h;
+	rect->top = rect->y;
+	//プレイヤーの当たり判定
+	p.x = TheClone[i].pos.x + 18;
+	p.y = TheClone[i].pos.y;
+	p.right = p.x + p.w;
+	p.left = p.x;
+	p.bottom = p.y + p.h;
+	p.top = p.y;
+	if (p.right > rect->left &&
+		p.left < rect->right &&
+		p.top < rect->bottom &&
+		p.bottom > rect->top) {
+		TheClone[i].pos.y = TheClone[i].pustCloneY;
+	}
+}
 void CLONE::kill(int i)
 {
 	Clone.cloneNum--;

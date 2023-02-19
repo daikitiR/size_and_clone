@@ -8,27 +8,6 @@ STAGESELECT::~STAGESELECT() {
 
 }
 //void STAGESELECT::newLineText() {
-//	const int Size = StageSelect.chars;
-//	const int NewLineLimit = 5;
-//	const int NumberofElements = Size / NewLineLimit;
-//	int count = 0;
-//	int charnum = 0;
-//	char str[NewLineLimit][NumberofElements]{ {} };
-//	for (int i = 0; i < strlen(StageSelect.string[0].explain); i++) {
-//		if (StageSelect.string[0].explain[i] == '\n') {
-//			count++;
-//			/*if (count < NewLineLimit) {
-//				break;
-//			}*/
-//			strncpy_s(&str[0][0], NumberofElements, &StageSelect.string[0].explain[0], i);
-//			//str[0][5] = '\0';
-//
-//		}
-//		textSize(StageSelect.expTextSize);
-//		text(StageSelect.string[0].explain, StageSelect.string[0].pos.x, StageSelect.string[0].pos.y);
-//		text(str[0],                    StageSelect.string[0].exppos.x, StageSelect.string[0].exppos.y);
-//	}
-//}
 void STAGESELECT::draw() {
 	clear(StageSelect.backColor);
 	fill(StageSelect.textColor);
@@ -60,6 +39,14 @@ void STAGESELECT::nextScene() {
 	if (isTrigger(KEY_Z)) {
 		game()->player()->init();
 		game()->clone()->init();
+		game()->woodbox()->init();
 		game()->changeScene(GAME::STAGE_ID);
 	}
+}
+
+void STAGESELECT::init()
+{
+	game()->player()->init();
+	game()->clone()->init();
+	game()->woodbox()->init();
 }

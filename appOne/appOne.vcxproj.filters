@@ -71,6 +71,9 @@
     <ClCompile Include="CLONE.cpp">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
     </ClCompile>
+    <ClCompile Include="WOODBOX.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
@@ -119,5 +122,6 @@
     <ClInclude Include="CLONE.h">
       <Filter>ソース ファイル\GAME\GAME_OBJECT\CHARACTER</Filter>
     </ClInclude>
+    <ClInclude Include="WOODBOX.h" />
   </ItemGroup>
 </Project>
