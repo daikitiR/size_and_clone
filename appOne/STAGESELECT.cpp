@@ -8,7 +8,7 @@ STAGESELECT::STAGESELECT(class GAME* game) :
 STAGESELECT::~STAGESELECT() {
 
 }
-//void STAGESELECT::newLineText() {
+
 void STAGESELECT::draw() {
 	clear(StageSelect.backColor);
 	image(SS_Images.image, 0, 0);

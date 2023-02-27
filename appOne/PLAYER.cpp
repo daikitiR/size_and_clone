@@ -99,7 +99,7 @@ void PLAYER::collisionY() {
 	p.x = Player.pos.x + 18;
 	p.y = Player.pos.y;
 	p.right = p.x + p.w;
-	p.left = p.x + 15* p.sizecal;
+	p.left = p.x +15 * p.sizecal;
 	p.bottom = p.y + p.h;
 	p.top = p.y;
 	//ìñÇΩÇ¡ÇΩÇÁ
@@ -190,23 +190,24 @@ void PLAYER::cloneSpawn() {
 }
 
 void PLAYER::sizeChange() {
-	//dekakunaru
+	//ëÂÇ´Ç≠Ç»ÇÈ
 	if (Player.flag == 0) {
 		if (isTrigger(KEY_E)) {
 			Player.size = 2;
 			Player.pos.y -= p.h;
 			p.sizecal = 2;
+
+			/*----------*/
 			p.w *= 2;
 			p.h *= 2;
 			Player.flag = 1;
 			Player.sizeMode = 1;
 		}
 	}
-	//tiisai
+	//è¨Ç≥Ç≠Ç»ÇÈ
 	if (Player.flag == 0) {
 		if (isTrigger(KEY_R)) {
 			Player.size = 0.5;
-			Player.pos.y -= p.h;
 			p.sizecal = 0.5;
 			p.w /= 2;
 			p.h /= 2;
@@ -216,6 +217,7 @@ void PLAYER::sizeChange() {
 	}
 	if (Player.flag == 1) {
 		if (isTrigger(KEY_Q)) {
+			//Ç≈Ç©Ç¢èÛë‘Ç©ÇÁñﬂÇÈ
 			if (Player.sizeMode == 1) {
 				Player.size = 1;
 				p.w /= 2;
@@ -224,6 +226,7 @@ void PLAYER::sizeChange() {
 				p.sizecal = 1;
 				Player.flag = 0;
 			}
+			//è¨Ç≥Ç¢èÛë‘Ç©ÇÁñﬂÇÈ
 			else if (Player.sizeMode == 2) {
 				Player.size = 1;
 				p.w *= 2;

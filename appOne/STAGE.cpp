@@ -37,9 +37,6 @@ void STAGE::draw() {
 				image(S_Images.button, Map.pos[i][j].x, Map.pos[i][j].y+26, 0, 1);
 				break;
 			default:
-				float J = j, I = i;
-				fill(0,0,0,0);
-				rect(60 * J, 60 * I, 60, 60);
 				break;
 			}
 		}

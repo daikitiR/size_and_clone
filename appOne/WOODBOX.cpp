@@ -73,8 +73,7 @@ void WOODBOX::PlayercolMove(VECTOR2* pos, float size)
 		//ç∂
 		else if(WdisP_R < WdisP_L){
 			woodbox.pos.x = rect->left - woodBoxRect.w;
-		}
-	
+		}	
 	}
 	STAGE::MAPS* map = new STAGE::MAPS;
 	*map = game()->container()->stage_map();
